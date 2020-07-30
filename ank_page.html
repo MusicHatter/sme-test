@@ -555,7 +555,22 @@ $(function() {
   var get_item = (decodeURIComponent(results[2].replace(/\+/g, " ")));
 
   var bContainerTitle = document.querySelector('.b-container__title');
-  if (get_item === 'universal') bContainerTitle.textContent = '"Заявка на Кредит"<br>"«Универсальный»"';
+  if (get_item === 'universal') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>«Универсальный»`;
+  if (get_item === 'salary') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>«Сохранение занятости»`;
+  if (get_item === 'express') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>«Экспресс кредит»`;
+  if (get_item === 'overdraft') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>«Овердрафт»`;
+  if (get_item === 'revolver') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>«Возобновляемая кредитная линия»`;
+  if (get_item === 'franchise') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>«Франшиза»`;
+  if (get_item === 'woman') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>«Женщина в бизнесе»`;
+  if (get_item === 'startup') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>«Молодые предприниматели»`;
+  if (get_item === 'target') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>«Целевой»`;
+  if (get_item === 'rentier') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>«Рантье»`;
+  if (get_item === 'contract') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>Контракт»`;
+  if (get_item === 'property') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>«На приобретение залогового имущества банка»`;
+  if (get_item === 'refinance') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>«Рефинансирование»`;
+  if (get_item === 'restart') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>«Вохобновление деятельности под 2%»`;
+  if (get_item === 'pref6') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>«Льготный кредит под 6%»`;
+  if (get_item === 'pref1') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>«Льготный кредит под 1%»`;
 
   var link = `
   <div data-react-class="Iframe" data-react-props="{&quot;src&quot;:&quot;https://services.open.ru/anketa/credit-sme/?campaign=${get_item}&quot;,&quot;height&quot;:&quot;&quot;,&quot;initial_json&quot;:{},&quot;auto_resizer&quot;:true}"></div>
