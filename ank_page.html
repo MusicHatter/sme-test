@@ -554,6 +554,9 @@ $(function() {
   if (!results[2]) console.log('');
   var get_item = (decodeURIComponent(results[2].replace(/\+/g, " ")));
 
+  var bContainerTitle = document.querySelector('.b-container__title');
+  if (get_item === 'universal') bContainerTitle.textContent = '"Заявка на Кредит"<br>"«Универсальный»"';
+
   var link = `
   <div data-react-class="Iframe" data-react-props="{&quot;src&quot;:&quot;https://services.open.ru/anketa/credit-sme/?campaign=${get_item}&quot;,&quot;height&quot;:&quot;&quot;,&quot;initial_json&quot;:{},&quot;auto_resizer&quot;:true}"></div>
   `
