@@ -549,7 +549,7 @@ $(function() {
     var regex = new RegExp("[?&]" + "campaign" + "(=([^&#]*)|&|#|$)");
     
     var results = regex.exec(url);
-    var keyContent = !results ? 'universal' : decodeURIComponent(results[2].replace(/\+/g, " "));
+    var keyContent = results ? decodeURIComponent(results[2].replace(/\+/g, " ")) : 'universal';
     
     var bContainerTitleCredit = document.querySelector('.b-container__title-credit');
     var campaignTitles = {
