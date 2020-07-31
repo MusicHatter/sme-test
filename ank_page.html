@@ -545,16 +545,11 @@ $(function() {
 <script>
   $(function(){
     var iframeLoad = document.getElementById("iframe-load");
-    var name = "campaign";
     var url = window.location.href;
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
+    var regex = new RegExp("[?&]" + "campaign" + "(=([^&#]*)|&|#|$)");
     
     var results = regex.exec(url);
-    if (!results) {
-      var keyContent = 'universal'
-    } else {
-      var keyContent = decodeURIComponent(results[2].replace(/\+/g, " "));
-    }
+    var keyContent = !results ? 'universal' : decodeURIComponent(results[2].replace(/\+/g, " "));
     
     var bContainerTitleCredit = document.querySelector('.b-container__title-credit');
     var campaignTitles = {
@@ -576,11 +571,7 @@ $(function() {
       pref1: 'Льготный кредит под 1%'
     };
 
-    if (typeof campaignTitles[keyContent] !== "undefined") {
-      bContainerTitleCredit.textContent = campaignTitles[keyContent];      
-    }else{
-      bContainerTitleCredit.textContent = 'Универсальный';
-    }
+    bContainerTitleCredit.textContent = typeof campaignTitles[keyContent] !== "undefined" ? campaignTitles[keyContent] : 'Универсальный';
 
     var link = '<div data-react-class="Iframe" data-react-props="{&quot;src&quot;:&quot;https://services.open.ru/anketa/credit-sme/?campaign=' + keyContent + '&quot;,&quot;height&quot;:&quot;&quot;,&quot;initial_json&quot;:{},&quot;auto_resizer&quot;:true}"></div>'
     iframeLoad.insertAdjacentHTML('afterbegin', link);
