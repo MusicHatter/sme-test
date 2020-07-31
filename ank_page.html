@@ -524,7 +524,7 @@ $(function() {
 
 <section class="section section--azure section--title-form">
   <div class="b-container">
-  	<h2 class="b-container__title">Заявка на&nbsp;Кредит <br>&laquo;Универсальный&raquo;</h2>
+  	<h2 class="b-container__title">Заявка на&nbsp;Кредит <br>&laquo;<span class="b-container__title-credit">Универсальный</span>&raquo;</h2>
   </div>	
 </section>
 <div id="iframe-load">
@@ -543,39 +543,42 @@ $(function() {
 </style>
 
 <script>
-  var iframeLoad = document.getElementById("iframe-load");
+  $(function(){
+    var iframeLoad = document.getElementById("iframe-load");
+    var name = "campaign";
+    var url = window.location.href;
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
+    var results = regex.exec(url);
+    var keyContent = decodeURIComponent(results[2].replace(/\+/g, " "));
+    var bContainerTitleCredit = document.querySelector('.b-container__title-credit');
+    var campaignTitles = {
+      universal: 'Универсальный',
+      salary: 'Сохранение занятости',
+      express: 'Экспресс кредит',
+      overdraft: 'Овердрафт',
+      revolver: 'Возобновляемая кредитная линия',
+      franchise: 'Франшиза',
+      woman: 'Женщина в бизнесе',
+      startup: 'Молодые предприниматели',
+      target: 'Целевой',
+      rentier: 'Рантье',
+      contract: 'Контракт',
+      property: 'На приобретение залогового имущества банка',
+      refinance: 'Рефинансирование',
+      restart: 'Возобновление деятельности под 2%',
+      pref6: 'Льготный кредит под 6%',
+      pref1: 'Льготный кредит под 1%'
+    };
 
-  var name = "campaign";
-  var url = window.location.href;
-  name = name.replace(/[\[\]]/g, "\$&");
-  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-      results = regex.exec(url);
-  if (!results) console.log(null);
-  if (!results[2]) console.log('');
-  var get_item = (decodeURIComponent(results[2].replace(/\+/g, " ")));
+    if (typeof campaignTitles[keyContent] !== "undefined") {
+      bContainerTitleCredit.textContent = campaignTitles.salary      
+    }else{
+      bContainerTitleCredit.textContent = 'Универсальный'
+    }
 
-  var bContainerTitle = document.querySelector('.b-container__title');
-  if (get_item === 'universal') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>«Универсальный»`;
-  if (get_item === 'salary') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>«Сохранение занятости»`;
-  if (get_item === 'express') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>«Экспресс кредит»`;
-  if (get_item === 'overdraft') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>«Овердрафт»`;
-  if (get_item === 'revolver') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>«Возобновляемая кредитная линия»`;
-  if (get_item === 'franchise') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>«Франшиза»`;
-  if (get_item === 'woman') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>«Женщина в бизнесе»`;
-  if (get_item === 'startup') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>«Молодые предприниматели»`;
-  if (get_item === 'target') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>«Целевой»`;
-  if (get_item === 'rentier') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>«Рантье»`;
-  if (get_item === 'contract') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>Контракт»`;
-  if (get_item === 'property') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>«На приобретение залогового имущества банка»`;
-  if (get_item === 'refinance') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>«Рефинансирование»`;
-  if (get_item === 'restart') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>«Вохобновление деятельности под 2%»`;
-  if (get_item === 'pref6') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>«Льготный кредит под 6%»`;
-  if (get_item === 'pref1') bContainerTitle.innerHTML = `Заявка на&nbsp;Кредит <br>«Льготный кредит под 1%»`;
-
-  var link = `
-  <div data-react-class="Iframe" data-react-props="{&quot;src&quot;:&quot;https://services.open.ru/anketa/credit-sme/?campaign=${get_item}&quot;,&quot;height&quot;:&quot;&quot;,&quot;initial_json&quot;:{},&quot;auto_resizer&quot;:true}"></div>
-  `
-  iframeLoad.insertAdjacentHTML('afterbegin', link);
+    var link = '<div data-react-class="Iframe" data-react-props="{&quot;src&quot;:&quot;https://services.open.ru/anketa/credit-sme/?campaign=' + keyContent + '&quot;,&quot;height&quot;:&quot;&quot;,&quot;initial_json&quot;:{},&quot;auto_resizer&quot;:true}"></div>'
+    iframeLoad.insertAdjacentHTML('afterbegin', link);
+  })
 
 </script>
 
