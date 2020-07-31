@@ -571,9 +571,9 @@ $(function() {
     };
 
     if (typeof campaignTitles[keyContent] !== "undefined") {
-      bContainerTitleCredit.textContent = campaignTitles.salary      
+      bContainerTitleCredit.textContent = campaignTitles.keyContent;      
     }else{
-      bContainerTitleCredit.textContent = 'Универсальный'
+      bContainerTitleCredit.textContent = 'Универсальный';
     }
 
     var link = '<div data-react-class="Iframe" data-react-props="{&quot;src&quot;:&quot;https://services.open.ru/anketa/credit-sme/?campaign=' + keyContent + '&quot;,&quot;height&quot;:&quot;&quot;,&quot;initial_json&quot;:{},&quot;auto_resizer&quot;:true}"></div>'
