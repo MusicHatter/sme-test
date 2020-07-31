@@ -548,8 +548,14 @@ $(function() {
     var name = "campaign";
     var url = window.location.href;
     var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
+    
     var results = regex.exec(url);
-    var keyContent = decodeURIComponent(results[2].replace(/\+/g, " "));
+    if (!results) {
+      var keyContent = 'universal'
+    } else {
+      var keyContent = decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+    
     var bContainerTitleCredit = document.querySelector('.b-container__title-credit');
     var campaignTitles = {
       universal: 'Универсальный',
